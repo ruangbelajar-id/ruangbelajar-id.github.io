@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>RuangBelajar • Portal Materi & Ujian Digital</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #F8FAFC;
+    }
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    id="appFrame"
+    allow="clipboard-read; clipboard-write; fullscreen; autoplay"
+    allowfullscreen
+    loading="eager">
+  </iframe>
+
+  <script>
+    const GAS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyH19x4revBAEBLB18LLDVVgSlADO0hQFG8cPp8YhGcO4kgdL4GxibzJqLVmLPOhnKXGQ/exec";
+    const queryString = window.location.search;
+    document.getElementById("appFrame").src = GAS_WEBAPP_URL + (queryString || "");
+  </script>
+</body>
+</html>
