@@ -35,6 +35,24 @@
   <script>
     const GAS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyH19x4revBAEBLB18LLDVVgSlADO0hQFG8cPp8YhGcO4kgdL4GxibzJqLVmLPOhnKXGQ/exec";
     const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+    const page = (params.get("page") || "").toLowerCase();
+
+    const pageTitles = {
+      "ops": "Panel OPS • Operator Sekolah",
+      "administrasi": "AdminGuru • Administrasi Guru",
+      "admin": "RuangBelajar • Panel Pengajar & Admin",
+      "banksoal": "Bank Soal & CBT Asesmen • RuangBelajar",
+      "ujian": "Ruang Ujian CBT • RuangBelajar"
+    };
+    document.title = pageTitles[page] || "RuangBelajar • Portal Materi & Ujian Digital";
+
+    window.addEventListener("message", function(event) {
+      if (event.data && event.data.type === "SET_PAGE_TITLE" && event.data.title) {
+        document.title = event.data.title;
+      }
+    });
+
     document.getElementById("appFrame").src = GAS_WEBAPP_URL + (queryString || "");
   </script>
 </body>
