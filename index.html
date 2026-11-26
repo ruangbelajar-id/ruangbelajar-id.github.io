@@ -28,7 +28,9 @@
 <body>
   <iframe
     id="appFrame"
-    allow="clipboard-read; clipboard-write; fullscreen; autoplay"
+    sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-top-navigation-by-user-activation allow-modals allow-downloads allow-storage-access-by-user-activation"
+    allow="clipboard-read; clipboard-write; fullscreen; autoplay; storage-access"
+    referrerpolicy="no-referrer-when-downgrade"
     allowfullscreen
     loading="eager">
   </iframe>
@@ -54,7 +56,6 @@
       if (event.data.type === "SET_PAGE_TITLE" && event.data.title) {
         document.title = event.data.title;
       }
-      // Terima perintah navigasi dari dalam iframe Apps Script agar bekerja di semua browser
       if (event.data.type === "NAVIGATE_PORTAL" && typeof event.data.search === "string") {
         window.location.href = window.location.origin + window.location.pathname + event.data.search;
       }
